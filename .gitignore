@@ -1,0 +1,6 @@
+.venv/
+.env
+data/*.csv
+dbt_project/target/
+dbt_project/logs/
+pycache/
