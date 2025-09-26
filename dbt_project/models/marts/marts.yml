@@ -1,0 +1,46 @@
+version: 2
+
+models:
+
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_worker
+    columns:
+      - name: worker_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_bookings
+    columns:
+      - name: booking_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+      - name: worker_id
+        tests:
+          - relationships:
+              to: ref('dim_worker')
+              field: worker_id
+      - name: requested_date
+        tests:
+          - not_null
+
+  - name: metrics_daily
+    columns:
+      - name: date
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null

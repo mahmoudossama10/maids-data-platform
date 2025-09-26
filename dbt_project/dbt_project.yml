@@ -1,0 +1,27 @@
+name: "model_playground"
+version: "1.0.0"
+config-version: 2
+
+profile: "model_playground"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  model_playground:                # project-level config
+    +materialized: view            # default materialization for this project
+
+    staging:
+      +schema: "STAGING"
+      +materialized: view
+
+    marts:
+      +schema: "MARTS"
+      +materialized: table

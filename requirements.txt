@@ -1,0 +1,8 @@
+pandas==2.2.2
+requests==2.32.3
+python-dotenv==1.0.1
+snowflake-connector-python >=3.13.1, <4.0.0
+faker==25.8.0
+prefect==2.19.8
+dbt-core==1.10.13
+dbt-snowflake==1.10.2
