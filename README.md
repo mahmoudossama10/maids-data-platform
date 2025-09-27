@@ -92,18 +92,18 @@ flowchart LR
 
   %% =============== Flows ===============
   %% Sources → Ingestion
-  S1 -->|reads| P1
-  P1 -->|writes CSV| S1
-  S1 -->|read & upsert| P2
-  S2 -->|fetch| P3
+  S1 -->|"reads"| P1
+  P1 -->|"writes CSV"| S1
+  S1 -->|"read & upsert"| P2
+  S2 -->|"fetch"| P3
 
   %% Ingestion → Snowflake RAW
-  P2 -->|MERGE by keys| R1
-  P2 -->|MERGE by keys| R2
-  P2 -->|MERGE by keys| R3
-  P3 -->|MERGE by (city,date)| R4
-  P4 -. used by .- P2
-  P4 -. used by .- P3
+  P2 -->|"MERGE by keys"| R1
+  P2 -->|"MERGE by keys"| R2
+  P2 -->|"MERGE by keys"| R3
+  P3 -->|"MERGE by city+date"| R4
+  P4 -. "used by" .- P2
+  P4 -. "used by" .- P3
 
   %% RAW → STAGING (dbt)
   R1 --> T1
@@ -120,16 +120,16 @@ flowchart LR
   M4 --> M5
 
   %% Orchestration triggers
-  OX -->|run| P1
-  OX -->|run| P2
-  OX -->|run| P3
-  OX -->|run| D1
-  OX -->|run| D2
-  OY -->|run| P1
-  OY -->|run| P2
-  OY -->|run| P3
-  OY -->|run| D1
-  OY -->|run| D2
+  OX -->|"run"| P1
+  OX -->|"run"| P2
+  OX -->|"run"| P3
+  OX -->|"run"| D1
+  OX -->|"run"| D2
+  OY -->|"run"| P1
+  OY -->|"run"| P2
+  OY -->|"run"| P3
+  OY -->|"run"| D1
+  OY -->|"run"| D2
 
   %% dbt processes operate on Snowflake
   D1 --> STG
@@ -138,5 +138,5 @@ flowchart LR
   D3 --> MARTS
 
   %% Consumption
-  MARTS -->|Snowflake live/extract| B1
-  MARTS -->|Snowflake live/extract| B2
+  MARTS -->|"Snowflake live/extract"| B1
+  MARTS -->|"Snowflake live/extract"| B2
