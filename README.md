@@ -19,7 +19,7 @@ flowchart LR
 
 
   %% =============== Ingestion (Python) ===============
-  subgraph ING[Ingestion \(Python\)]
+  subgraph ING["Ingestion (Python)"]
     direction TB
     P1[generate_synthetic.py]:::process
     P2[load_csvs.py<br/><small>merge_upsert() → RAW</small>]:::process
