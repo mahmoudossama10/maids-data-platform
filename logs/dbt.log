@@ -93,3 +93,33 @@ Runtime Error
 [0m02:15:37.626390 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002115BA07BD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002115B750ED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002115B9B5950>]}
 [0m02:15:37.627390 [debug] [MainThread]: Flushing usage events
 [0m02:15:38.193444 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:23:45.628173 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002458345FE10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000245834A07D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002458345FF10>]}
+
+
+============================== 19:23:45.633187 | fdfbc152-005b-4c1c-b9f9-4628ee5ff609 ==============================
+[0m19:23:45.633187 [info ] [MainThread]: Running with dbt=1.10.13
+[0m19:23:45.634920 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'profiles_dir': 'C:\\Users\\lenovo\\.dbt', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'use_colors': 'True', 'invocation_command': 'dbt snapshot', 'log_format': 'default', 'warn_error': 'None', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'quiet': 'False', 'printer_width': '80', 'empty': 'False', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs', 'write_json': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m19:23:45.634920 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path E:\GitHub\maids-data-platform\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:23:45.637009 [debug] [MainThread]: Command `dbt snapshot` failed at 19:23:45.637009 after 0.12 seconds
+[0m19:23:45.637009 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002457D4BC6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002458345F450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002458345F4D0>]}
+[0m19:23:45.637917 [debug] [MainThread]: Flushing usage events
+[0m19:23:46.288871 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:02:14.424646 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D8495FE90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D8495F890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D849A48D0>]}
+
+
+============================== 20:02:14.429362 | 096bce3b-c831-484e-a116-73a82cdb1977 ==============================
+[0m20:02:14.429362 [info ] [MainThread]: Running with dbt=1.10.13
+[0m20:02:14.430146 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'write_json': 'True', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'warn_error': 'None', 'invocation_command': 'dbt clean', 'log_format': 'default', 'use_colors': 'True', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'printer_width': '80', 'indirect_selection': 'eager', 'log_path': 'logs', 'profiles_dir': 'C:\\Users\\lenovo\\.dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True'}
+[0m20:02:14.431156 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path E:\GitHub\maids-data-platform\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m20:02:14.433164 [debug] [MainThread]: Command `dbt clean` failed at 20:02:14.433164 after 0.11 seconds
+[0m20:02:14.433164 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D849E2B10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D8498CB90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021D7E766950>]}
+[0m20:02:14.434163 [debug] [MainThread]: Flushing usage events
+[0m20:02:15.191422 [debug] [MainThread]: An error was encountered while trying to flush usage events

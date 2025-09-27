@@ -25,13 +25,17 @@ models:
       - name: customer_id
         tests:
           - relationships:
-              to: ref('dim_customer')
-              field: customer_id
+              name: relationships
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
       - name: worker_id
         tests:
           - relationships:
-              to: ref('dim_worker')
-              field: worker_id
+              name: relationships
+              arguments:
+                to: ref('dim_worker')
+                field: worker_id
       - name: requested_date
         tests:
           - not_null
@@ -44,3 +48,19 @@ models:
       - name: city
         tests:
           - not_null
+  
+  - name: dim_worker_history
+    columns:
+      - name: worker_id
+        tests:
+          - not_null
+      - name: valid_from
+        tests:
+          - not_null
+
+  - name: dim_worker_current
+    columns:
+      - name: worker_id
+        tests:
+          - not_null
+          - unique
