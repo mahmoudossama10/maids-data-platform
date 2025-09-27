@@ -12,82 +12,81 @@ flowchart LR
   %% =============== Sources ===============
   subgraph S[Sources]
     direction TB
-    S1[CSV: customers.csv<br/>workers.csv<br/>bookings.csv]:::table
+    S1["CSV: customers.csv\nworkers.csv\nbookings.csv"]:::table
     S2["API: Open-Meteo (weather)"]:::table
-    end
-    class S layer
-
+  end
+  class S layer
 
   %% =============== Ingestion (Python) ===============
   subgraph ING["Ingestion (Python)"]
     direction TB
-    P1[generate_synthetic.py]:::process
-    P2[load_csvs.py<br/><small>merge_upsert() → RAW</small>]:::process
-    P3[fetch_weather.py<br/><small>upsert → RAW.WEATHER</small>]:::process
-    P4[utils.py<br/><small>get_conn(), ensure_tables(), merge_upsert()</small>]:::process
+    P1["generate_synthetic.py"]:::process
+    P2["load_csvs.py\nmerge_upsert() -> RAW"]:::process
+    P3["fetch_weather.py\nupsert -> RAW.WEATHER"]:::process
+    P4["utils.py\nget_conn(), ensure_tables(), merge_upsert()"]:::process
   end
 
   %% =============== Snowflake (ANALYTICS DB) ===============
-  subgraph SF[Snowflake: ANALYTICS]
+  subgraph SF["Snowflake: ANALYTICS"]
     direction LR
 
-    subgraph RAW[RAW schema]
+    subgraph RAW["RAW schema"]
       direction TB
-      R1[RAW.CUSTOMERS]:::table
-      R2[RAW.WORKERS]:::table
-      R3[RAW.BOOKINGS]:::table
-      R4[RAW.WEATHER]:::table
+      R1["RAW.CUSTOMERS"]:::table
+      R2["RAW.WORKERS"]:::table
+      R3["RAW.BOOKINGS"]:::table
+      R4["RAW.WEATHER"]:::table
     end
     class RAW layer
 
-    subgraph STG[STAGING schema]
+    subgraph STG["STAGING schema"]
       direction TB
-      T1[stg_customers (view)]:::table
-      T2[stg_workers (view)]:::table
-      T3[stg_bookings (view)]:::table
-      T4[stg_weather (view)]:::table
+      T1["stg_customers (view)"]:::table
+      T2["stg_workers (view)"]:::table
+      T3["stg_bookings (view)"]:::table
+      T4["stg_weather (view)"]:::table
     end
     class STG layer
 
-    subgraph MARTS[MARTS schema]
+    subgraph MARTS["MARTS schema"]
       direction TB
-      M1[dim_customer (table)]:::table
-      M2[dim_worker (table)]:::table
-      M3[fact_bookings (incremental MERGE)]:::table
-      M4[metrics_daily (table)]:::table
-      M5[anomalies_daily (table)]:::table
+      M1["dim_customer (table)"]:::table
+      M2["dim_worker (table)"]:::table
+      M3["fact_bookings (incremental MERGE)"]:::table
+      M4["metrics_daily (table)"]:::table
+      M5["anomalies_daily (table)"]:::table
     end
     class MARTS layer
 
-    subgraph OPS[OPS schema]
+    subgraph OPS["OPS schema"]
       direction TB
-      O1[OPS.INGESTION_WATERMARKS]:::table
+      O1["OPS.INGESTION_WATERMARKS"]:::table
     end
     class OPS layer
   end
 
   %% =============== dbt ===============
-  subgraph DBT[dbt]
+  subgraph DBT["dbt"]
     direction TB
-    D1[dbt run<br/><small>staging → marts</small>]:::process
-    D2[dbt test<br/><small>unique, not_null, relationships, freshness</small>]:::test
-    D3[dbt docs<br/><small>lineage, catalog</small>]:::process
+    D1["dbt run\nstaging -> marts"]:::process
+    D2["dbt test\nunique, not_null, relationships, freshness"]:::test
+    D3["dbt docs\nlineage, catalog"]:::process
   end
   class DBT layer
 
   %% =============== Orchestration ===============
-  subgraph ORCH[Orchestration]
+  subgraph ORCH["Orchestration"]
     direction TB
-    OX[Prefect flow: elt_pipeline<br/><small>generate_data → load_csvs → fetch_weather → dbt run/test</small>]:::orchestrate
-    OY[run_all.py<br/><small>simple fallback runner</small>]:::orchestrate
+    OX["Prefect flow: elt_pipeline\ngenerate_data -> load_csvs -> fetch_weather -> dbt run/test"]:::orchestrate
+    OY["run_all.py\nsimple fallback runner"]:::orchestrate
   end
   class ORCH layer
 
   %% =============== BI / Consumption ===============
-  subgraph BI[BI / Consumption]
+  subgraph BI["BI / Consumption"]
     direction TB
-    B1[Tableau: Executive Ops<br/><small>KPIs, trends by city/channel</small>]:::bi
-    B2[Tableau: Data Health<br/><small>anomalies, freshness</small>]:::bi
+    B1["Tableau: Executive Ops\nKPIs, trends by city/channel"]:::bi
+    B2["Tableau: Data Health\nanomalies, freshness"]:::bi
   end
   class BI layer
 
