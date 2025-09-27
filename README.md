@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
   subgraph Sources
     A1[CSV Files]
