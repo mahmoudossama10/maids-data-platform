@@ -13,9 +13,10 @@ flowchart LR
   subgraph S[Sources]
     direction TB
     S1[CSV: customers.csv<br/>workers.csv<br/>bookings.csv]:::table
-    S2[API: Open‑Meteo (weather)]:::table
-  end
-  class S layer
+    S2["API: Open-Meteo (weather)"]:::table
+    end
+    class S layer
+
 
   %% =============== Ingestion (Python) ===============
   subgraph ING[Ingestion (Python)]
