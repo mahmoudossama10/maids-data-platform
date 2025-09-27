@@ -12,7 +12,7 @@ flowchart LR
   %% =============== Sources ===============
   subgraph S[Sources]
     direction TB
-    S1["CSV: customers.csv\nworkers.csv\nbookings.csv"]:::table
+    S1["CSV: customers.csv<br/>workers.csv<br/>bookings.csv"]:::table
     S2["API: Open-Meteo (weather)"]:::table
   end
   class S layer
@@ -21,9 +21,9 @@ flowchart LR
   subgraph ING["Ingestion (Python)"]
     direction TB
     P1["generate_synthetic.py"]:::process
-    P2["load_csvs.py\nmerge_upsert() -> RAW"]:::process
-    P3["fetch_weather.py\nupsert -> RAW.WEATHER"]:::process
-    P4["utils.py\nget_conn(), ensure_tables(), merge_upsert()"]:::process
+    P2["load_csvs.py<br/>merge_upsert() -> RAW"]:::process
+    P3["fetch_weather.py<br/>upsert -> RAW.WEATHER"]:::process
+    P4["utils.py<br/>get_conn(), ensure_tables(), merge_upsert()"]:::process
   end
 
   %% =============== Snowflake (ANALYTICS DB) ===============
@@ -68,25 +68,25 @@ flowchart LR
   %% =============== dbt ===============
   subgraph DBT["dbt"]
     direction TB
-    D1["dbt run\nstaging -> marts"]:::process
-    D2["dbt test\nunique, not_null, relationships, freshness"]:::test
-    D3["dbt docs\nlineage, catalog"]:::process
+    D1["dbt run<br/>staging -> marts"]:::process
+    D2["dbt test<br/>unique, not_null, relationships, freshness"]:::test
+    D3["dbt docs<br/>lineage, catalog"]:::process
   end
   class DBT layer
 
   %% =============== Orchestration ===============
   subgraph ORCH["Orchestration"]
     direction TB
-    OX["Prefect flow: elt_pipeline\ngenerate_data -> load_csvs -> fetch_weather -> dbt run/test"]:::orchestrate
-    OY["run_all.py\nsimple fallback runner"]:::orchestrate
+    OX["Prefect flow: elt_pipeline<br/>generate_data -> load_csvs -> fetch_weather -> dbt run/test"]:::orchestrate
+    OY["run_all.py<br/>simple fallback runner"]:::orchestrate
   end
   class ORCH layer
 
   %% =============== BI / Consumption ===============
   subgraph BI["BI / Consumption"]
     direction TB
-    B1["Tableau: Executive Ops\nKPIs, trends by city/channel"]:::bi
-    B2["Tableau: Data Health\nanomalies, freshness"]:::bi
+    B1["Tableau: Executive Ops<br/>KPIs, trends by city/channel"]:::bi
+    B2["Tableau: Data Health<br/>anomalies, freshness"]:::bi
   end
   class BI layer
 
